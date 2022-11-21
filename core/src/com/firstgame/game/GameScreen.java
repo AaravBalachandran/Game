@@ -33,7 +33,6 @@ public class GameScreen implements Screen {
         menuMusic.play();
     }
 
-
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
