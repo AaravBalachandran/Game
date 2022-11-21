@@ -8,21 +8,24 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import static com.badlogic.gdx.Gdx.graphics;
+
+
 public class MainMenuScreen implements Screen {
     final main mainLoad;
     SpriteBatch batch;
     Texture start;
 	Sprite sprite_start;
-//    Music loadingsound;
+    Music loadingsound;
     public MainMenuScreen(final main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
-        start = new Texture("Menu/Images/mainLoading.png");
+        start = new Texture("Load/Images/mainLoading.png");
         sprite_start = new Sprite(start);
-        sprite_start.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//        loadingsound = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/chut.mp3"));
-//        loadingsound.setLooping(true);
-//        loadingsound.play();
+        sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
+        loadingsound = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/chut.mp3"));
+        loadingsound.setLooping(true);
+        loadingsound.play();
 
     }
 
@@ -31,10 +34,11 @@ public class MainMenuScreen implements Screen {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
 		batch.begin();
 		sprite_start.draw(batch);
+
 		batch.end();
         if (Gdx.input.isTouched()) {
-//            loadingsound.pause();
             mainLoad.setScreen(new GameScreen(mainLoad));
+            loadingsound.pause();
             dispose();
         }
 
