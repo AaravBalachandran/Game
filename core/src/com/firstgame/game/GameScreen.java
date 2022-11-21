@@ -13,16 +13,16 @@ public class GameScreen implements Screen {
     SpriteBatch batch;
     Texture start;
     Sprite sprite_start;
-    Music menuMusic;
+//    Music menuMusic;
     public GameScreen(main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
         start = new Texture("Menu/Images/stare.jpg");
         sprite_start = new Sprite(start);
         sprite_start.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/rickRolled.mp3"));
-        menuMusic.setLooping(true);
-        menuMusic.play();
+//        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/rickRolled.mp3"));
+//        menuMusic.setLooping(true);
+//        menuMusic.play();
     }
 
 
