@@ -23,7 +23,7 @@ public class MainMenuScreen implements Screen {
         start = new Texture("Load/Images/mainLoading.png");
         sprite_start = new Sprite(start);
         sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
-        loadingsound = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/chut.mp3"));
+        loadingsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
         loadingsound.setLooping(true);
         loadingsound.play();
 
