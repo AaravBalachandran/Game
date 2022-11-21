@@ -14,7 +14,7 @@ public class main extends Game {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		this.setScreen(new LoadScreen(this));
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	public void render() {
