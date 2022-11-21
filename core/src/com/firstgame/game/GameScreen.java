@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
     public GameScreen(main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
-        start = new Texture("Menu/Images/stare.jpg");
+        start = new Texture("Menu/Images/mainLoading.png");
         sprite_start = new Sprite(start);
         sprite_start.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 //        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/rickRolled.mp3"));
