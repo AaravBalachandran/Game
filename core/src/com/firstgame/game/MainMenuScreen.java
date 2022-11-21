@@ -16,16 +16,16 @@ public class MainMenuScreen implements Screen {
     SpriteBatch batch;
     Texture start;
 	Sprite sprite_start;
-    Music loadingsound;
+    Music loadsound;
     public MainMenuScreen(final main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
         start = new Texture("Load/Images/mainLoading.png");
         sprite_start = new Sprite(start);
         sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
-        loadingsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
-        loadingsound.setLooping(true);
-        loadingsound.play();
+        loadsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
+        loadsound.setLooping(true);
+        loadsound.play();
 
     }
 
@@ -38,7 +38,7 @@ public class MainMenuScreen implements Screen {
 		batch.end();
         if (Gdx.input.isTouched()) {
             mainLoad.setScreen(new GameScreen(mainLoad));
-            loadingsound.pause();
+            loadsound.pause();
             dispose();
         }
 
