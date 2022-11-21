@@ -11,13 +11,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import static com.badlogic.gdx.Gdx.graphics;
 
 
-public class MainMenuScreen implements Screen {
+public class LoadScreen implements Screen {
     final main mainLoad;
     SpriteBatch batch;
     Texture start;
 	Sprite sprite_start;
     Music loadsound;
-    public MainMenuScreen(final main mainLoad) {
+    public LoadScreen(final main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
         start = new Texture("Load/Images/mainLoading.png");
@@ -46,7 +46,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-//        batch.dispose();
         start.dispose();
         loadsound.dispose();
     }
