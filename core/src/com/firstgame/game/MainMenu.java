@@ -6,49 +6,41 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-import static com.badlogic.gdx.Gdx.graphics;
+public class MainMenu implements Screen {
 
-
-public class MainMenuScreen implements Screen {
     final main mainLoad;
     SpriteBatch batch;
     Texture start;
-	Sprite sprite_start;
-    Music loadsound;
-    public MainMenuScreen(final main mainLoad) {
+    Sprite sprite_start;
+    Music menuMusic;
+    public MainMenu(main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
-        start = new Texture("Load/Images/mainLoading.png");
+        start = new Texture("Menu/Images/Main.png");
         sprite_start = new Sprite(start);
-        sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
-        loadsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
-        loadsound.setLooping(true);
-        loadsound.play();
-
+        sprite_start.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/mainMenu.mp3"));
+        menuMusic.setLooping(true);
+        menuMusic.play();
     }
 
-    @Override
     public void render(float delta) {
-        ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
-		batch.begin();
-		sprite_start.draw(batch);
-		batch.end();
-
+        batch.begin();
+        sprite_start.draw(batch);
+        batch.end();
         if (Gdx.input.isTouched()) {
-            mainLoad.setScreen(new MainMenu(mainLoad));
-            loadsound.pause();
+            mainLoad.setScreen(new VsFriend(mainLoad));
             dispose();
         }
-
     }
 
     @Override
     public void dispose() {
 //        batch.dispose();
         start.dispose();
-        loadsound.dispose();
+        menuMusic.dispose();
     }
 
     @Override
@@ -61,5 +53,6 @@ public class MainMenuScreen implements Screen {
     public void resume() {}
     @Override
     public void hide() {}
+
 
 }

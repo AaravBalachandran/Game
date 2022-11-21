@@ -10,20 +10,19 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
-
-public class MainMenuScreen implements Screen {
+public class VsFriend implements Screen {
     final main mainLoad;
     SpriteBatch batch;
     Texture start;
-	Sprite sprite_start;
+    Sprite sprite_start;
     Music loadsound;
-    public MainMenuScreen(final main mainLoad) {
+    public VsFriend(final main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
-        start = new Texture("Load/Images/mainLoading.png");
+        start = new Texture("GamePlay/Images/background/theme2.png");
         sprite_start = new Sprite(start);
         sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
-        loadsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
+        loadsound = Gdx.audio.newMusic(Gdx.files.internal("GamePlay/Images/background/gamePlay.mp3"));
         loadsound.setLooping(true);
         loadsound.play();
 
@@ -32,12 +31,12 @@ public class MainMenuScreen implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
-		batch.begin();
-		sprite_start.draw(batch);
-		batch.end();
+        batch.begin();
+        sprite_start.draw(batch);
+        batch.end();
 
         if (Gdx.input.isTouched()) {
-            mainLoad.setScreen(new MainMenu(mainLoad));
+            mainLoad.setScreen(new GameScreen(mainLoad));
             loadsound.pause();
             dispose();
         }
@@ -47,7 +46,6 @@ public class MainMenuScreen implements Screen {
     @Override
     public void dispose() {
 //        batch.dispose();
-        start.dispose();
         loadsound.dispose();
     }
 
