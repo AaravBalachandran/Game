@@ -13,27 +13,31 @@ import static com.badlogic.gdx.Gdx.graphics;
 
 public class play1 implements Screen {
     private TankStars game;
-    private Stage loadScreenStage;
+    private Stage gameStage;
     Image load;
+    Image terrain;
     Music gameSound;
     public play1(final TankStars game) {
         this.game = game;
-        loadScreenStage = new Stage();
-        load = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/theme1.png")));
+        gameStage = new Stage();
+        load = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/theme/theme1.png")));
         load.setSize(graphics.getWidth(), graphics.getHeight());
-        Gdx.input.setInputProcessor(loadScreenStage);
+        terrain = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/terrain/STerrain.png")));
+        terrain.setSize(graphics.getWidth(), graphics.getHeight()-360);
+        Gdx.input.setInputProcessor(gameStage);
         gameSound = Gdx.audio.newMusic(Gdx.files.internal("GamePlay/Music/gamePlay.mp3"));
         gameSound.setLooping(true);
         gameSound.play();
 
-        loadScreenStage.addActor(load);
+        gameStage.addActor(load);
+        gameStage.addActor(terrain);
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
-        loadScreenStage.act(delta);
-        loadScreenStage.draw();
+        gameStage.act(delta);
+        gameStage.draw();
 
         if (Gdx.input.isTouched()) {
             game.setScreen(new MainMenu(game));

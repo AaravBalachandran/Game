@@ -90,6 +90,7 @@ public class MainMenu implements Screen {
         button2.setPosition(1190,450);
         button3.setPosition(1190,300);
         button4.setPosition(1190,150);
+
         menuStage.addActor(menu);
         menuStage.addActor(button1);
         menuStage.addActor(button2);
