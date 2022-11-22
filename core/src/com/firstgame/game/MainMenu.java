@@ -6,16 +6,14 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
 public class MainMenu implements Screen {
 
-    final main mainLoad;
+    final TankStars tankStarsLoad;
     SpriteBatch batch;
     Texture start;
     Texture tank;
@@ -31,8 +29,8 @@ public class MainMenu implements Screen {
 
 //    Skin buttonSkin;
 
-    public MainMenu(main mainLoad) {
-        this.mainLoad = mainLoad;
+    public MainMenu(TankStars tankStarsLoad) {
+        this.tankStarsLoad = tankStarsLoad;
         batch = new SpriteBatch();
         start = new Texture("Menu/Images/main.png");
         tank = new Texture("Menu/Images/spaceTanks/tank2.png");
@@ -81,15 +79,15 @@ public class MainMenu implements Screen {
         s.set(Gdx.input.getX(), Gdx.input.getY() + 760, 0);
         if (Gdx.input.isTouched()) {
             if (button1.contains(b1.x, b1.y)){
-                mainLoad.setScreen(new Stage(mainLoad));
+                tankStarsLoad.setScreen(new Stage(tankStarsLoad));
                 dispose();
             }
             else if (button2.contains(b2.x,b2.y)){
-                mainLoad.setScreen(new Stage(mainLoad));
+                tankStarsLoad.setScreen(new Stage(tankStarsLoad));
                 dispose();
             }
             else if (setting.contains(s.x,s.y)){
-                mainLoad.setScreen(new mainSetting(mainLoad));
+                tankStarsLoad.setScreen(new mainSetting(tankStarsLoad));
                 dispose();
             }
         }

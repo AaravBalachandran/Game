@@ -12,13 +12,13 @@ import static com.badlogic.gdx.Gdx.graphics;
 
 
 public class LoadScreen implements Screen {
-    final main mainLoad;
+    final TankStars game;
     SpriteBatch batch;
     Texture start;
 	Sprite sprite_start;
     Music loadsound;
-    public LoadScreen(final main mainLoad) {
-        this.mainLoad = mainLoad;
+    public LoadScreen(final TankStars game) {
+        this.game = game;
         batch = new SpriteBatch();
         start = new Texture("Load/Images/mainLoading.png");
         sprite_start = new Sprite(start);
@@ -37,7 +37,7 @@ public class LoadScreen implements Screen {
 		batch.end();
 
         if (Gdx.input.isTouched()) {
-            mainLoad.setScreen(new MainMenu(mainLoad));
+            game.setScreen(new MainMenu(game));
             loadsound.pause();
             dispose();
         }

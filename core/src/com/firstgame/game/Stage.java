@@ -11,13 +11,15 @@ import static com.badlogic.gdx.Gdx.graphics;
 
 public class Stage implements Screen {
 
-    final main mainLoad;
+    final TankStars game;
     SpriteBatch batch;
     Texture start;
     Sprite sprite_start;
 
-    public Stage(main mainLoad) {
-        this.mainLoad = mainLoad;
+
+
+    public Stage(TankStars game) {
+        this.game = game;
         batch = new SpriteBatch();
         start = new Texture("GamePlay/Images/background/theme2.png");
         sprite_start = new Sprite(start);
@@ -30,7 +32,7 @@ public class Stage implements Screen {
         sprite_start.draw(batch);
         batch.end();
         if (Gdx.input.isTouched()) {
-            mainLoad.setScreen(new MainMenu(mainLoad));
+            game.setScreen(new MainMenu(game));
             dispose();
         }
     }

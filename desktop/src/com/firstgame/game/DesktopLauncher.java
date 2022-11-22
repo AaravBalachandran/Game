@@ -2,7 +2,6 @@ package com.firstgame.game;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.firstgame.game.main;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -12,7 +11,7 @@ public class DesktopLauncher {
 		config.setTitle("Tank Star");
 		config.setWindowedMode(2560, 1600);
 		config.setResizable(true);
-		new Lwjgl3Application(new main(), config);
+		new Lwjgl3Application(new TankStars(), config);
 
 
 	}
