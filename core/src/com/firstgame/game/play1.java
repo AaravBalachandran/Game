@@ -1,9 +1,12 @@
 package com.firstgame.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -14,6 +17,9 @@ import static com.badlogic.gdx.Gdx.graphics;
 public class play1 implements Screen {
     private TankStars game;
     private Stage gameStage;
+    ShapeRenderer shapeRenderer;
+    Texture tank;
+    Rectangle rectangle;
     Image load;
     Image terrain;
     Image healthP1;
@@ -56,6 +62,14 @@ public class play1 implements Screen {
         gameSound.setLooping(true);
         gameSound.play();
 
+        tank = new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png"));
+        rectangle = new Rectangle();
+        shapeRenderer = new ShapeRenderer();
+        rectangle.x = 800 / 2 - 64 / 2;
+        rectangle.y = 430;
+        rectangle.width = 115;
+        rectangle.height = 55;
+
         gameStage.addActor(load);
         gameStage.addActor(terrain);
         gameStage.addActor(healthP1);
@@ -71,12 +85,19 @@ public class play1 implements Screen {
         gameStage.act(delta);
         gameStage.draw();
 
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.rect(800 / 2 - 64 / 2, 430, 115, 55);
+        shapeRenderer.end();
+
         if (Gdx.input.isTouched()) {
             game.setScreen(new MainMenu(game));
             gameSound.pause();
             dispose();
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            rectangle.x += 200 * Gdx.graphics.getDeltaTime();
+        }
     }
 
     @Override
