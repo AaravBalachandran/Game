@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
@@ -13,28 +13,27 @@ import static com.badlogic.gdx.Gdx.graphics;
 
 public class LoadScreen implements Screen {
     private TankStars game;
-    SpriteBatch batch;
-    Texture start;
-	Sprite sprite_start;
+    private Stage loadScreenStage;
+    Image load;
     Music loadsound;
     public LoadScreen(final TankStars game) {
         this.game = game;
-        batch = new SpriteBatch();
-        start = new Texture("Load/Images/mainLoading.png");
-        sprite_start = new Sprite(start);
-        sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
+        loadScreenStage = new Stage();
+        load = new Image(new Texture(Gdx.files.internal("Load/Images/mainLoading.png")));
+        load.setSize(graphics.getWidth(), graphics.getHeight());
+        Gdx.input.setInputProcessor(loadScreenStage);
         loadsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
         loadsound.setLooping(true);
         loadsound.play();
 
+        loadScreenStage.addActor(load);
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
-		batch.begin();
-		sprite_start.draw(batch);
-		batch.end();
+		loadScreenStage.act(delta);
+        loadScreenStage.draw();
 
         if (Gdx.input.isTouched()) {
             game.setScreen(new MainMenu(game));
@@ -46,7 +45,6 @@ public class LoadScreen implements Screen {
 
     @Override
     public void dispose() {
-        start.dispose();
         loadsound.dispose();
     }
 

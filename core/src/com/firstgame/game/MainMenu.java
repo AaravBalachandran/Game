@@ -3,99 +3,112 @@ package com.firstgame.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
 public class MainMenu implements Screen {
 
-    final TankStars tankStarsLoad;
-    SpriteBatch batch;
-    Texture start;
-    Texture tank;
-    Texture button1;
-    Texture button2;
-    Texture setting;
-    Sprite sprite_start;
-    Sprite sprite_tank;
-    Sprite sprite_button1;
-    Sprite sprite_button2;
-    Sprite sprite_setting;
+    private final TankStars game;
     Music menuMusic;
+    Image menu;
+    Table table;
+    private Stage menuStage;
+    private TextureAtlas atlas;
+    Skin skin;
+    ImageButton button1;
+    ImageButton button2;
+    ImageButton button3;
+    ImageButton button4;
+    ImageButton.ImageButtonStyle buttonStyle;
 
-//    Skin buttonSkin;
-
-    public MainMenu(TankStars tankStarsLoad) {
-        this.tankStarsLoad = tankStarsLoad;
-        batch = new SpriteBatch();
-        start = new Texture("Menu/Images/main.png");
-        tank = new Texture("Menu/Images/spaceTanks/tank2.png");
-        button1 = new Texture("Menu/Images/Button/button.png");
-        button2 = new Texture("Menu/Images/Button/button.png");
-        setting = new Texture("Menu/Images/normalIcons/settings.png");
-        sprite_start = new Sprite(start);
-        sprite_tank = new Sprite(tank);
-        sprite_button1 = new Sprite(button1);
-        sprite_button2 = new Sprite(button1);
-        sprite_setting = new Sprite(setting);
-        sprite_start.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    public MainMenu(final TankStars game) {
+        this.game = game;
+        table = new Table();
+        menuStage = new Stage();
+        menu = new Image(new Texture(Gdx.files.internal("Menu/Images/background/tankfront1.png")));
+        Gdx.input.setInputProcessor(menuStage);
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/mainMenu.mp3"));
         menuMusic.setLooping(true);
         menuMusic.play();
 
+        atlas = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/button.atlas"));
+        skin = new Skin(atlas);
+        menu.setSize(graphics.getWidth(), graphics.getHeight());
+        buttonStyle = new ImageButton.ImageButtonStyle();
+        buttonStyle.up = skin.getDrawable("button_up");
+        buttonStyle.down = skin.getDrawable("button_down");
+        buttonStyle.pressedOffsetX =1;
+        buttonStyle.pressedOffsetY = -1;
+
+        button1 = new ImageButton(buttonStyle);
+        button2 = new ImageButton(buttonStyle);
+        button3 = new ImageButton(buttonStyle);
+        button4 = new ImageButton(buttonStyle);
+        button1.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.setScreen(new play1(game));
+                menuMusic.pause();
+            }
+        });
+        button2.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.setScreen(new play1(game));
+                menuMusic.pause();
+            }
+        });
+
+        button3.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                game.setScreen(new play1(game));
+                menuMusic.pause();
+            }
+        });
+
+        button4.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.exit(0);
+                menuMusic.pause();
+            }
+        });
+
+        button1.setSize(243,89);
+        button2.setSize(243,89);
+        button3.setSize(243,89);
+        button4.setSize(243,89);
+        button1.setPosition(1190,600);
+        button2.setPosition(1190,450);
+        button3.setPosition(1190,300);
+        button4.setPosition(1190,150);
+        menuStage.addActor(menu);
+        menuStage.addActor(button1);
+        menuStage.addActor(button2);
+        menuStage.addActor(button3);
+        menuStage.addActor(button4);
+
     }
 
     public void render(float delta) {
-        batch.begin();
-        sprite_start.draw(batch);
-        sprite_tank.draw(batch);
-        sprite_button1.draw(batch);
-        sprite_button2.draw(batch);
-        sprite_setting.draw(batch);
-        sprite_tank.setSize(600,381);
-        sprite_tank.setPosition(graphics.getWidth()/4 - 40 -sprite_tank.getWidth()/4, graphics.getHeight()/4 + 14 -sprite_tank.getHeight()/4);
-        sprite_button1.setSize(243,89);
-        sprite_button1.setPosition(2560/2.193f + 30,600);
-        sprite_button2.setSize(243,89);
-        sprite_button2.setPosition(2560/2.193f + 30,400);
-        sprite_setting.setSize(125,132);
-        sprite_setting.setPosition(40,780);
-        batch.end();
 
-        Rectangle button1 = new Rectangle(2560/2.193f + 30,700,243,89);
-        Rectangle button2 = new Rectangle(2560/2.193f + 30,400,243,89);
-        Rectangle setting = new Rectangle(40,780,125,132);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        Vector3 b1 = new Vector3();
-        Vector3 b2 = new Vector3();
-        Vector3 s = new Vector3();
-
-        b1.set(Gdx.input.getX(), Gdx.input.getY() + 460, 0);
-        b2.set(Gdx.input.getX(), Gdx.input.getY() -48, 0);
-        s.set(Gdx.input.getX(), Gdx.input.getY() + 760, 0);
-        if (Gdx.input.isTouched()) {
-            if (button1.contains(b1.x, b1.y)){
-                tankStarsLoad.setScreen(new Stage(tankStarsLoad));
-                dispose();
-            }
-            else if (button2.contains(b2.x,b2.y)){
-                tankStarsLoad.setScreen(new Stage(tankStarsLoad));
-                dispose();
-            }
-            else if (setting.contains(s.x,s.y)){
-                tankStarsLoad.setScreen(new mainSetting(tankStarsLoad));
-                dispose();
-            }
-        }
+        menuStage.act(delta);
+        menuStage.draw();
     }
 
     @Override
     public void dispose() {
-        start.dispose();
         menuMusic.dispose();
     }
 
@@ -112,3 +125,9 @@ public class MainMenu implements Screen {
 
 
 }
+
+//        sprite_setting.setSize(125,132);
+//        setting.setPosition(40,780);
+//        Rectangle button2 = new Rectangle(2560/2.193f + 30,400,243,89)
+
+

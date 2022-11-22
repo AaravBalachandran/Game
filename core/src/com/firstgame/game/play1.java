@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
@@ -13,32 +13,31 @@ import static com.badlogic.gdx.Gdx.graphics;
 
 public class play1 implements Screen {
     private TankStars game;
-    SpriteBatch batch;
-    Texture start;
-    Sprite sprite_start;
-    Music Loadsound;
+    private Stage loadScreenStage;
+    Image load;
+    Music gameSound;
     public play1(final TankStars game) {
         this.game = game;
-        batch = new SpriteBatch();
-        start = new Texture("GamePlay/Images/background/theme1.png");
-        sprite_start = new Sprite(start);
-        sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
-        Loadsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
-        Loadsound.setLooping(true);
-        Loadsound.play();
+        loadScreenStage = new Stage();
+        load = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/theme1.png")));
+        load.setSize(graphics.getWidth(), graphics.getHeight());
+        Gdx.input.setInputProcessor(loadScreenStage);
+        gameSound = Gdx.audio.newMusic(Gdx.files.internal("GamePlay/Music/gamePlay.mp3"));
+        gameSound.setLooping(true);
+        gameSound.play();
 
+        loadScreenStage.addActor(load);
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
-        batch.begin();
-        sprite_start.draw(batch);
-        batch.end();
+        loadScreenStage.act(delta);
+        loadScreenStage.draw();
 
         if (Gdx.input.isTouched()) {
             game.setScreen(new MainMenu(game));
-            Loadsound.pause();
+            gameSound.pause();
             dispose();
         }
 
@@ -46,8 +45,7 @@ public class play1 implements Screen {
 
     @Override
     public void dispose() {
-        start.dispose();
-        Loadsound.dispose();
+        gameSound.dispose();
     }
 
     @Override
