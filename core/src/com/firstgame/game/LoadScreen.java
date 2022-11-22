@@ -12,7 +12,7 @@ import static com.badlogic.gdx.Gdx.graphics;
 
 
 public class LoadScreen implements Screen {
-    final TankStars game;
+    private TankStars game;
     SpriteBatch batch;
     Texture start;
 	Sprite sprite_start;

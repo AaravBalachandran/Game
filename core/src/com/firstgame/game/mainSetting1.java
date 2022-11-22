@@ -5,40 +5,38 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
-public class Stage implements Screen {
-
-    final TankStars game;
+public class mainSetting1 implements Screen {
+    private TankStars tankStarsLoad;
     SpriteBatch batch;
     Texture start;
     Sprite sprite_start;
-
-
-
-    public Stage(TankStars game) {
-        this.game = game;
+    public mainSetting1(TankStars tankStarsLoad) {
+        this.tankStarsLoad = tankStarsLoad;
         batch = new SpriteBatch();
         start = new Texture("GamePlay/Images/background/theme2.png");
         sprite_start = new Sprite(start);
         sprite_start.setSize(graphics.getWidth(), graphics.getHeight());
     }
 
+    @Override
     public void render(float delta) {
-        ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
         batch.begin();
         sprite_start.draw(batch);
         batch.end();
+
         if (Gdx.input.isTouched()) {
-            game.setScreen(new MainMenu(game));
+            tankStarsLoad.setScreen(new MainMenu(tankStarsLoad));
             dispose();
         }
+
     }
 
+    @Override
     public void dispose() {
-        batch.dispose();
+        start.dispose();
     }
 
     @Override
