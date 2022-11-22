@@ -1,5 +1,6 @@
 package com.firstgame.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,14 +9,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
-public class VsFriend implements Screen {
+public class Stage implements Screen {
 
     final main mainLoad;
     SpriteBatch batch;
     Texture start;
     Sprite sprite_start;
 
-    public VsFriend(main mainLoad) {
+    public Stage(main mainLoad) {
         this.mainLoad = mainLoad;
         batch = new SpriteBatch();
         start = new Texture("GamePlay/Images/background/theme2.png");
@@ -28,6 +29,10 @@ public class VsFriend implements Screen {
         batch.begin();
         sprite_start.draw(batch);
         batch.end();
+        if (Gdx.input.isTouched()) {
+            mainLoad.setScreen(new MainMenu(mainLoad));
+            dispose();
+        }
     }
 
     public void dispose() {
