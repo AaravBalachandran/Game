@@ -20,13 +20,19 @@ public class MainMenu implements Screen {
     Image menu;
     Table table;
     private Stage menuStage;
-    private TextureAtlas atlas;
     Skin skin;
     ImageButton vsFriend;
     ImageButton vsPlayer;
     ImageButton Setting;
     ImageButton Exit;
-    ImageButton.ImageButtonStyle buttonStyle;
+    private TextureAtlas atlas1;
+    ImageButton.ImageButtonStyle buttonStyle1;
+    private TextureAtlas atlas2;
+    ImageButton.ImageButtonStyle buttonStyle2;
+    private TextureAtlas atlas3;
+    ImageButton.ImageButtonStyle buttonStyle3;
+    private TextureAtlas atlas4;
+    ImageButton.ImageButtonStyle buttonStyle4;
 
     public MainMenu(final TankStars game) {
         this.game = game;
@@ -38,19 +44,43 @@ public class MainMenu implements Screen {
         menuMusic.setLooping(true);
         menuMusic.play();
 
-        atlas = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/button.atlas"));
-        skin = new Skin(atlas);
-        menu.setSize(graphics.getWidth(), graphics.getHeight());
-        buttonStyle = new ImageButton.ImageButtonStyle();
-        buttonStyle.up = skin.getDrawable("button_up");
-        buttonStyle.down = skin.getDrawable("button_down");
-        buttonStyle.pressedOffsetX =1;
-        buttonStyle.pressedOffsetY = -1;
+        atlas1 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsFriend/button.atlas"));
+        skin = new Skin(atlas1);
+        buttonStyle1 = new ImageButton.ImageButtonStyle();
+        buttonStyle1.up = skin.getDrawable("button_up");
+        buttonStyle1.down = skin.getDrawable("button_down");
+        buttonStyle1.pressedOffsetX =1;
+        buttonStyle1.pressedOffsetY = -1;
 
-        vsFriend = new ImageButton(buttonStyle);
-        vsPlayer = new ImageButton(buttonStyle);
-        Setting = new ImageButton(buttonStyle);
-        Exit = new ImageButton(buttonStyle);
+        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsPlayer/button.atlas"));
+        skin = new Skin(atlas2);
+        buttonStyle2 = new ImageButton.ImageButtonStyle();
+        buttonStyle2.up = skin.getDrawable("button_up");
+        buttonStyle2.down = skin.getDrawable("button_down");
+        buttonStyle2.pressedOffsetX =1;
+        buttonStyle2.pressedOffsetY = -1;
+
+        atlas3 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/Settings/button.atlas"));
+        skin = new Skin(atlas3);
+        buttonStyle3 = new ImageButton.ImageButtonStyle();
+        buttonStyle3.up = skin.getDrawable("button_up");
+        buttonStyle3.down = skin.getDrawable("button_down");
+        buttonStyle3.pressedOffsetX =1;
+        buttonStyle3.pressedOffsetY = -1;
+
+        atlas4 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/Exit/button.atlas"));
+        skin = new Skin(atlas4);
+        menu.setSize(graphics.getWidth(), graphics.getHeight());
+        buttonStyle4 = new ImageButton.ImageButtonStyle();
+        buttonStyle4.up = skin.getDrawable("button_up");
+        buttonStyle4.down = skin.getDrawable("button_down");
+        buttonStyle4.pressedOffsetX =1;
+        buttonStyle4.pressedOffsetY = -1;
+
+        vsFriend = new ImageButton(buttonStyle1);
+        vsPlayer = new ImageButton(buttonStyle2);
+        Setting = new ImageButton(buttonStyle3);
+        Exit = new ImageButton(buttonStyle4);
         vsFriend.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
