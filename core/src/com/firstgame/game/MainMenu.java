@@ -22,10 +22,10 @@ public class MainMenu implements Screen {
     private Stage menuStage;
     private TextureAtlas atlas;
     Skin skin;
-    ImageButton button1;
-    ImageButton button2;
-    ImageButton button3;
-    ImageButton button4;
+    ImageButton vsFriend;
+    ImageButton vsPlayer;
+    ImageButton Setting;
+    ImageButton Exit;
     ImageButton.ImageButtonStyle buttonStyle;
 
     public MainMenu(final TankStars game) {
@@ -47,26 +47,18 @@ public class MainMenu implements Screen {
         buttonStyle.pressedOffsetX =1;
         buttonStyle.pressedOffsetY = -1;
 
-        button1 = new ImageButton(buttonStyle);
-        button2 = new ImageButton(buttonStyle);
-        button3 = new ImageButton(buttonStyle);
-        button4 = new ImageButton(buttonStyle);
-        button1.addListener(new ClickListener(){
+        vsFriend = new ImageButton(buttonStyle);
+        vsPlayer = new ImageButton(buttonStyle);
+        Setting = new ImageButton(buttonStyle);
+        Exit = new ImageButton(buttonStyle);
+        vsFriend.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new play1(game));
                 menuMusic.pause();
             }
         });
-        button2.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new play1(game));
-                menuMusic.pause();
-            }
-        });
-
-        button3.addListener(new ClickListener(){
+        vsPlayer.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new play1(game));
@@ -74,7 +66,15 @@ public class MainMenu implements Screen {
             }
         });
 
-        button4.addListener(new ClickListener(){
+        Setting.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+//                game.setScreen(new play1(game));
+//                menuMusic.pause();
+            }
+        });
+
+        Exit.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 System.exit(0);
@@ -82,20 +82,20 @@ public class MainMenu implements Screen {
             }
         });
 
-        button1.setSize(243,89);
-        button2.setSize(243,89);
-        button3.setSize(243,89);
-        button4.setSize(243,89);
-        button1.setPosition(1190,600);
-        button2.setPosition(1190,450);
-        button3.setPosition(1190,300);
-        button4.setPosition(1190,150);
+        vsFriend.setSize(243,89);
+        vsPlayer.setSize(243,89);
+        Setting.setSize(243,89);
+        Exit.setSize(243,89);
+        vsFriend.setPosition(1190,600);
+        vsPlayer.setPosition(1190,450);
+        Setting.setPosition(1190,300);
+        Exit.setPosition(1190,150);
 
         menuStage.addActor(menu);
-        menuStage.addActor(button1);
-        menuStage.addActor(button2);
-        menuStage.addActor(button3);
-        menuStage.addActor(button4);
+        menuStage.addActor(vsFriend);
+        menuStage.addActor(vsPlayer);
+        menuStage.addActor(Setting);
+        menuStage.addActor(Exit);
 
     }
 
@@ -129,6 +129,6 @@ public class MainMenu implements Screen {
 
 //        sprite_setting.setSize(125,132);
 //        setting.setPosition(40,780);
-//        Rectangle button2 = new Rectangle(2560/2.193f + 30,400,243,89)
+//        Rectangle vsPlayer = new Rectangle(2560/2.193f + 30,400,243,89)
 
 
