@@ -1,21 +1,18 @@
 package com.firstgame.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class main extends Game {
+public class TankStars extends Game {
+	public static final int gameWidth = 1920;
+	public static final int gameHeight = 1080;
 	public SpriteBatch batch;
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		this.setScreen(new MainMenuScreen(this));
-
+		this.setScreen(new LoadScreen(this));
 	}
 
 	public void render() {
