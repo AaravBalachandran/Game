@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,8 +22,8 @@ public class MainMenu implements Screen {
     Table table;
     private Stage menuStage;
     Skin skin;
-    ImageButton vsFriend;
-    ImageButton vsPlayer;
+    ImageButton startNewGame;
+    ImageButton savedGame;
     ImageButton Setting;
     ImageButton Exit;
     private TextureAtlas atlas1;
@@ -50,7 +49,7 @@ public class MainMenu implements Screen {
         tank.setSize(500,300);
         tank.setPosition(260,220);
 
-        atlas1 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsFriend/button.atlas"));
+        atlas1 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/New game/button.atlas"));
         skin = new Skin(atlas1);
         buttonStyle1 = new ImageButton.ImageButtonStyle();
         buttonStyle1.up = skin.getDrawable("button_up");
@@ -58,7 +57,7 @@ public class MainMenu implements Screen {
         buttonStyle1.pressedOffsetX =1;
         buttonStyle1.pressedOffsetY = -1;
 
-        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsComputer/button.atlas"));
+        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/saved games/button.atlas"));
         skin = new Skin(atlas2);
         buttonStyle2 = new ImageButton.ImageButtonStyle();
         buttonStyle2.up = skin.getDrawable("button_up");
@@ -83,18 +82,18 @@ public class MainMenu implements Screen {
         buttonStyle4.pressedOffsetX =1;
         buttonStyle4.pressedOffsetY = -1;
 
-        vsFriend = new ImageButton(buttonStyle1);
-        vsPlayer = new ImageButton(buttonStyle2);
+        startNewGame = new ImageButton(buttonStyle1);
+        savedGame = new ImageButton(buttonStyle2);
         Setting = new ImageButton(buttonStyle3);
         Exit = new ImageButton(buttonStyle4);
-        vsFriend.addListener(new ClickListener(){
+        startNewGame.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new tankSelect1(game));
                 menuMusic.pause();
             }
         });
-        vsPlayer.addListener(new ClickListener(){
+        savedGame.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
                 game.setScreen(new tankSelect2(game));
@@ -118,18 +117,18 @@ public class MainMenu implements Screen {
             }
         });
 
-        vsFriend.setSize(243,89);
-        vsPlayer.setSize(243,89);
+        startNewGame.setSize(243,89);
+        savedGame.setSize(243,89);
         Setting.setSize(243,89);
         Exit.setSize(243,89);
-        vsFriend.setPosition(1190,600);
-        vsPlayer.setPosition(1190,450);
+        startNewGame.setPosition(1190,600);
+        savedGame.setPosition(1190,450);
         Setting.setPosition(1190,300);
         Exit.setPosition(1190,150);
 
         menuStage.addActor(menu);
-        menuStage.addActor(vsFriend);
-        menuStage.addActor(vsPlayer);
+        menuStage.addActor(startNewGame);
+        menuStage.addActor(savedGame);
         menuStage.addActor(Setting);
         menuStage.addActor(Exit);
         menuStage.addActor(tank);
