@@ -37,7 +37,7 @@ public class setting implements Screen {
         menuMusic.setLooping(true);
         menuMusic.play();
 
-        atlas1 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsFriend/button.atlas"));
+        atlas1 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/New game/button.atlas"));
         skin = new Skin(atlas1);
         buttonStyle1 = new ImageButton.ImageButtonStyle();
         buttonStyle1.up = skin.getDrawable("button_up");
@@ -45,7 +45,7 @@ public class setting implements Screen {
         buttonStyle1.pressedOffsetX =1;
         buttonStyle1.pressedOffsetY = -1;
 
-        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsComputer/button.atlas"));
+        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/saved games/button.atlas"));
         skin = new Skin(atlas2);
         buttonStyle2 = new ImageButton.ImageButtonStyle();
         buttonStyle2.up = skin.getDrawable("button_up");
