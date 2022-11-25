@@ -46,7 +46,7 @@ public class tankSelect1 implements Screen {
         Play.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new MainMenu(game));
+                game.setScreen(new play1(game));
                 menuMusic.pause();
             }
         });
@@ -90,6 +90,6 @@ public class tankSelect1 implements Screen {
 
 //        sprite_setting.setSize(125,132);
 //        setting.setPosition(40,780);
-//        Rectangle vsPlayer = new Rectangle(2560/2.193f + 30,400,243,89)
+//        Rectangle musicOFF = new Rectangle(2560/2.193f + 30,400,243,89)
 
 

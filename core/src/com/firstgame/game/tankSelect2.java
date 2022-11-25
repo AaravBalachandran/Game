@@ -90,6 +90,6 @@ public class tankSelect2 implements Screen {
 
 //        sprite_setting.setSize(125,132);
 //        setting.setPosition(40,780);
-//        Rectangle vsPlayer = new Rectangle(2560/2.193f + 30,400,243,89)
+//        Rectangle musicOFF = new Rectangle(2560/2.193f + 30,400,243,89)
 
 

@@ -18,7 +18,7 @@
 //    Texture start;
 //    Texture tank;
 //    Texture Play;
-//    Texture vsPlayer;
+//    Texture musicOFF;
 //    Texture setting;
 //    Sprite sprite_start;
 //    Sprite sprite_tank;
@@ -35,7 +35,7 @@
 //        start = new Texture("Menu/Images/main.png");
 //        tank = new Texture("Menu/Images/spaceTanks/tank2.png");
 //        Play = new Texture("Menu/Images/Button/button.png");
-//        vsPlayer = new Texture("Menu/Images/Button/button.png");
+//        musicOFF = new Texture("Menu/Images/Button/button.png");
 //        setting = new Texture("Menu/Images/normalIcons/settings.png");
 //        sprite_start = new Sprite(start);
 //        sprite_tank = new Sprite(tank);
@@ -67,7 +67,7 @@
 //        batch.end();
 //
 //        Rectangle Play = new Rectangle(2560/2.193f + 30,700,243,89);
-//        Rectangle vsPlayer = new Rectangle(2560/2.193f + 30,400,243,89);
+//        Rectangle musicOFF = new Rectangle(2560/2.193f + 30,400,243,89);
 //        Rectangle setting = new Rectangle(40,780,125,132);
 //
 //        Vector3 b1 = new Vector3();
@@ -82,7 +82,7 @@
 //                game.setScreen(new play(game));
 //                dispose();
 //            }
-//            else if (vsPlayer.contains(b2.x,b2.y)){
+//            else if (musicOFF.contains(b2.x,b2.y)){
 //                game.setScreen(new play(game));
 //                dispose();
 //            }
