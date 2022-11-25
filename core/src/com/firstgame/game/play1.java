@@ -12,13 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
+import static com.badlogic.gdx.Gdx.input;
 
 
 public class play1 implements Screen {
     private TankStars game;
     private Stage gameStage;
     ShapeRenderer shapeRenderer;
-    Texture tank;
     Rectangle rectangle;
     Image load;
     Image terrain;
@@ -62,7 +62,6 @@ public class play1 implements Screen {
         gameSound.setLooping(true);
         gameSound.play();
 
-        tank = new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png"));
         rectangle = new Rectangle();
         shapeRenderer = new ShapeRenderer();
         rectangle.x = 800 / 2 - 64 / 2;
@@ -77,6 +76,11 @@ public class play1 implements Screen {
         gameStage.addActor(vs);
         gameStage.addActor(tank1);
         gameStage.addActor(tank2);
+
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+//            float temp_x= tank1.getX();
+            tank1.setPosition(1490,341);
+        }
     }
 
     @Override

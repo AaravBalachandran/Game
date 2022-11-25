@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,8 +17,9 @@ import static com.badlogic.gdx.Gdx.graphics;
 public class MainMenu implements Screen {
 
     private final TankStars game;
-    Music menuMusic;
+    private Music menuMusic;
     Image menu;
+    Image tank;
     Table table;
     private Stage menuStage;
     Skin skin;
@@ -44,6 +46,10 @@ public class MainMenu implements Screen {
         menuMusic.setLooping(true);
         menuMusic.play();
 
+        tank = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png")));
+        tank.setSize(500,300);
+        tank.setPosition(260,220);
+
         atlas1 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsFriend/button.atlas"));
         skin = new Skin(atlas1);
         buttonStyle1 = new ImageButton.ImageButtonStyle();
@@ -52,7 +58,7 @@ public class MainMenu implements Screen {
         buttonStyle1.pressedOffsetX =1;
         buttonStyle1.pressedOffsetY = -1;
 
-        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsPlayer/button.atlas"));
+        atlas2 = new TextureAtlas(Gdx.files.internal("Menu/Images/Button/vsComputer/button.atlas"));
         skin = new Skin(atlas2);
         buttonStyle2 = new ImageButton.ImageButtonStyle();
         buttonStyle2.up = skin.getDrawable("button_up");
@@ -84,14 +90,14 @@ public class MainMenu implements Screen {
         vsFriend.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new play1(game));
+                game.setScreen(new tankSelect1(game));
                 menuMusic.pause();
             }
         });
         vsPlayer.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new play1(game));
+                game.setScreen(new tankSelect2(game));
                 menuMusic.pause();
             }
         });
@@ -126,6 +132,7 @@ public class MainMenu implements Screen {
         menuStage.addActor(vsPlayer);
         menuStage.addActor(Setting);
         menuStage.addActor(Exit);
+        menuStage.addActor(tank);
 
     }
 

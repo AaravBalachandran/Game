@@ -17,7 +17,7 @@
 //    SpriteBatch batch;
 //    Texture start;
 //    Texture tank;
-//    Texture vsFriend;
+//    Texture Play;
 //    Texture vsPlayer;
 //    Texture setting;
 //    Sprite sprite_start;
@@ -34,13 +34,13 @@
 //        batch = new SpriteBatch();
 //        start = new Texture("Menu/Images/main.png");
 //        tank = new Texture("Menu/Images/spaceTanks/tank2.png");
-//        vsFriend = new Texture("Menu/Images/Button/button.png");
+//        Play = new Texture("Menu/Images/Button/button.png");
 //        vsPlayer = new Texture("Menu/Images/Button/button.png");
 //        setting = new Texture("Menu/Images/normalIcons/settings.png");
 //        sprite_start = new Sprite(start);
 //        sprite_tank = new Sprite(tank);
-//        sprite_button1 = new Sprite(vsFriend);
-//        sprite_button2 = new Sprite(vsFriend);
+//        sprite_button1 = new Sprite(Play);
+//        sprite_button2 = new Sprite(Play);
 //        sprite_setting = new Sprite(setting);
 //        sprite_start.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 //        menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/mainMenu.mp3"));
@@ -66,7 +66,7 @@
 //        sprite_setting.setPosition(40,780);
 //        batch.end();
 //
-//        Rectangle vsFriend = new Rectangle(2560/2.193f + 30,700,243,89);
+//        Rectangle Play = new Rectangle(2560/2.193f + 30,700,243,89);
 //        Rectangle vsPlayer = new Rectangle(2560/2.193f + 30,400,243,89);
 //        Rectangle setting = new Rectangle(40,780,125,132);
 //
@@ -78,7 +78,7 @@
 //        b2.set(Gdx.input.getX(), Gdx.input.getY() -48, 0);
 //        s.set(Gdx.input.getX(), Gdx.input.getY() + 760, 0);
 //        if (Gdx.input.isTouched()) {
-//            if (vsFriend.contains(b1.x, b1.y)){
+//            if (Play.contains(b1.x, b1.y)){
 //                game.setScreen(new play(game));
 //                dispose();
 //            }
