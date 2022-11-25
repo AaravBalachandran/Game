@@ -89,14 +89,14 @@ public class MainMenu implements Screen {
         startNewGame.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new tankSelect1(game));
+                game.setScreen(new tankSelect(game));
                 menuMusic.pause();
             }
         });
         savedGame.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new tankSelect2(game));
+                game.setScreen(new savdeGame(game));
                 menuMusic.pause();
             }
         });

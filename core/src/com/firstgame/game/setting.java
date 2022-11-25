@@ -68,14 +68,14 @@ public class setting implements Screen {
         musicOn.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new tankSelect1(game));
+                game.setScreen(new tankSelect(game));
                 menuMusic.pause();
             }
         });
         musicOFF.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new tankSelect2(game));
+                game.setScreen(new savdeGame(game));
                 menuMusic.pause();
             }
         });

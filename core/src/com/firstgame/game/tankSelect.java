@@ -11,9 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import static com.badlogic.gdx.Gdx.graphics;
-
-public class tankSelect1 implements Screen {
+public class tankSelect implements Screen {
 
     private final TankStars game;
     Music menuMusic;
@@ -25,7 +23,7 @@ public class tankSelect1 implements Screen {
     private TextureAtlas atlas;
     ImageButton.ImageButtonStyle buttonStyle;
 
-    public tankSelect1(final TankStars game) {
+    public tankSelect(final TankStars game) {
         this.game = game;
         table = new Table();
         menuStage = new Stage();
