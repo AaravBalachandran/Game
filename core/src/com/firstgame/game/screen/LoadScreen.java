@@ -1,4 +1,4 @@
-package com.firstgame.game;
+package com.firstgame.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,32 +7,38 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.firstgame.game.screen.MainMenu;
+import com.firstgame.game.TankStars;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
-
 public class LoadScreen implements Screen {
-    private TankStars game;
-    private Stage loadScreenStage;
+    private final TankStars game;
+    private final Stage loadScreenStage;
     Image load;
+    Image logo;
     Music loadsound;
-    public LoadScreen(final TankStars game) {
+    public LoadScreen(TankStars game){
         this.game = game;
+
         loadScreenStage = new Stage();
         load = new Image(new Texture(Gdx.files.internal("Load/Images/mainLoading.png")));
+        logo = new Image(new Texture(Gdx.files.internal("Menu/Images/logo2.png")));
         load.setSize(graphics.getWidth(), graphics.getHeight());
         Gdx.input.setInputProcessor(loadScreenStage);
         loadsound = Gdx.audio.newMusic(Gdx.files.internal("Load/Music/Loadmusic.mp3"));
         loadsound.setLooping(true);
         loadsound.play();
 
+        logo.setSize(490,390);
+        logo.setPosition(580,600);
         loadScreenStage.addActor(load);
+        loadScreenStage.addActor(logo);
     }
 
-    @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
-		loadScreenStage.act(delta);
+        loadScreenStage.act(delta);
         loadScreenStage.draw();
 
         if (Gdx.input.isTouched()) {
@@ -40,12 +46,6 @@ public class LoadScreen implements Screen {
             loadsound.pause();
             dispose();
         }
-
-    }
-
-    @Override
-    public void dispose() {
-        loadsound.dispose();
     }
 
     @Override
@@ -58,5 +58,6 @@ public class LoadScreen implements Screen {
     public void resume() {}
     @Override
     public void hide() {}
-
+    @Override
+    public void dispose() {loadsound.dispose();}
 }

@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Tank Star");
 		config.setWindowedMode(1920, 1080);
-		config.setResizable(true);
+		config.setResizable(true); 
 		new Lwjgl3Application(new TankStars(), config);
 
 

@@ -6,10 +6,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class savdeGame implements Screen {
 
@@ -117,10 +115,10 @@ public class savdeGame implements Screen {
 
         menuStage.act(delta);
         menuStage.draw();
-//        if (Gdx.input.isTouched()) {
-//            game.setScreen(new MainMenu(game));
-//            dispose();
-//        }
+        if (Gdx.input.isTouched()) {
+            game.setScreen(new mainmenu(game));
+            dispose();
+        }
     }
 
     @Override

@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.badlogic.gdx.Gdx.graphics;
-import static com.badlogic.gdx.Gdx.input;
 
 
 public class play1 implements Screen {
@@ -94,7 +93,7 @@ public class play1 implements Screen {
         shapeRenderer.end();
 
         if (Gdx.input.isTouched()) {
-            game.setScreen(new MainMenu(game));
+            game.setScreen(new mainmenu(game));
             gameSound.pause();
             dispose();
         }
@@ -106,6 +105,7 @@ public class play1 implements Screen {
 
     @Override
     public void dispose() {
+
         gameSound.dispose();
     }
 

@@ -16,6 +16,12 @@ public class tankSelect implements Screen {
     private final TankStars game;
     Music menuMusic;
     Image menu;
+    Image tank1_small;
+    Image tank2_small;
+    Image tank3_small;
+    Image tank1_large;
+    Image tank2_large;
+    Image tank3_large;
     Table table;
     private Stage menuStage;
     Skin skin;
@@ -27,7 +33,7 @@ public class tankSelect implements Screen {
         this.game = game;
         table = new Table();
         menuStage = new Stage();
-        menu = new Image(new Texture(Gdx.files.internal("Menu/Images/background/tankfront1.png")));
+        menu = new Image(new Texture(Gdx.files.internal("Menu/Images/background/interface1.png")));
         Gdx.input.setInputProcessor(menuStage);
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/mainMenu.mp3"));
         menuMusic.setLooping(true);
@@ -52,6 +58,12 @@ public class tankSelect implements Screen {
         Play.setSize(243,89);
         Play.setPosition(1270,250);
 
+        tank1_large = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png")));
+        tank2_large = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/orangeTank.png")));
+        tank3_large = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/geenTank.png")));
+//        tank1_small = new Image(new Texture(Gdx.files.internal("Tank choosing/beigishtank.png")));
+//        tank2_small = new Image(new Texture(Gdx.files.internal("Tank choosing/bluetank.png")));
+//        tank3_small = new Image(new Texture(Gdx.files.internal("Tank choosing/bluetank.png")));
 
         menuStage.addActor(menu);
         menuStage.addActor(Play);
