@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -15,7 +17,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.firstgame.game.TankStars;
 import com.firstgame.game.scenes.hud;
-import com.firstgame.game.screen.MainMenu;
 import static com.badlogic.gdx.Gdx.graphics;
 
 
@@ -26,8 +27,11 @@ public class play1 implements Screen {
     private OrthographicCamera gamecam;
     private Viewport gameport;
     private hud hud;
+
+    private World world;
+    private Box2DDebugRenderer b2render;
+
     ShapeRenderer shapeRenderer;
-    Rectangle rectangle;
     Image load;
     Image terrain;
     Image healthP1;
@@ -71,15 +75,15 @@ public class play1 implements Screen {
         gameSound.play();
 
         gamecam = new OrthographicCamera();
-        gameport = new FitViewport(game.gameWidth,game.gameHeight,gamecam);
+        gameport = new FitViewport(TankStars.gameWidth, TankStars.gameHeight,gamecam);
         hud = new hud(game.batch);
 
-        rectangle = new Rectangle();
-        shapeRenderer = new ShapeRenderer();
-        rectangle.x = 800 / 2 - 64 / 2;
-        rectangle.y = 430;
-        rectangle.width = 115;
-        rectangle.height = 55;
+        gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
+        world = new World(new Vector2(0,0),true);
+        b2render = new Box2DDebugRenderer();
+        BodyDef body = new BodyDef();
+        PolygonShape shape = new PolygonShape();
+        FixtureDef fixtureDef = new FixtureDef();
 
         gameStage.addActor(load);
         gameStage.addActor(terrain);
@@ -103,19 +107,12 @@ public class play1 implements Screen {
         gameStage.act(delta);
         gameStage.draw();
 
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.rect(800 / 2 - 64 / 2, 430, 115, 55);
-        shapeRenderer.end();
-
         if (Gdx.input.isTouched()) {
             game.setScreen(new MainMenu(game));
             gameSound.pause();
             dispose();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            rectangle.x += 200 * Gdx.graphics.getDeltaTime();
-        }
     }
 
     @Override
