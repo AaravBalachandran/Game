@@ -1,4 +1,4 @@
-package com.firstgame.game;
+package com.firstgame.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -9,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.firstgame.game.TankStars;
+import com.firstgame.game.savdeGame;
+import com.firstgame.game.tankSelect;
 
 public class setting implements Screen {
 
@@ -112,7 +115,7 @@ public class setting implements Screen {
         menuStage.act(delta);
         menuStage.draw();
         if (Gdx.input.isTouched()) {
-            game.setScreen(new mainmenu(game));
+            game.setScreen(new MainMenu(game));
             dispose();
         }
     }

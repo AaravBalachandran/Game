@@ -1,22 +1,31 @@
-package com.firstgame.game;
+package com.firstgame.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
-
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.firstgame.game.TankStars;
+import com.firstgame.game.scenes.hud;
+import com.firstgame.game.screen.MainMenu;
 import static com.badlogic.gdx.Gdx.graphics;
 
 
 public class play1 implements Screen {
     private TankStars game;
     private Stage gameStage;
+
+    private OrthographicCamera gamecam;
+    private Viewport gameport;
+    private hud hud;
     ShapeRenderer shapeRenderer;
     Rectangle rectangle;
     Image load;
@@ -61,6 +70,10 @@ public class play1 implements Screen {
         gameSound.setLooping(true);
         gameSound.play();
 
+        gamecam = new OrthographicCamera();
+        gameport = new FitViewport(game.gameWidth,game.gameHeight,gamecam);
+        hud = new hud(game.batch);
+
         rectangle = new Rectangle();
         shapeRenderer = new ShapeRenderer();
         rectangle.x = 800 / 2 - 64 / 2;
@@ -85,6 +98,8 @@ public class play1 implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.95F, 0.95F, 0.95F, 0.95F);
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
         gameStage.act(delta);
         gameStage.draw();
 
@@ -93,7 +108,7 @@ public class play1 implements Screen {
         shapeRenderer.end();
 
         if (Gdx.input.isTouched()) {
-            game.setScreen(new mainmenu(game));
+            game.setScreen(new MainMenu(game));
             gameSound.pause();
             dispose();
         }

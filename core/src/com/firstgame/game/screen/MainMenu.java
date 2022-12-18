@@ -13,9 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstgame.game.TankStars;
-import com.firstgame.game.play1;
 import com.firstgame.game.savdeGame;
-import com.firstgame.game.setting;
 
 import static com.badlogic.gdx.Gdx.graphics;
 
