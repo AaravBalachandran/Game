@@ -7,6 +7,7 @@ import com.firstgame.game.screen.LoadScreen;
 public class TankStars extends Game {
 	public static final int gameWidth = 1920;
 	public static final int gameHeight = 1080;
+	public static  float PPM = 100;
 	public SpriteBatch batch;
 
 	@Override

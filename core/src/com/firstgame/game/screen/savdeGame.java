@@ -1,4 +1,4 @@
-package com.firstgame.game;
+package com.firstgame.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.firstgame.game.TankStars;
 import com.firstgame.game.screen.MainMenu;
 
 public class savdeGame implements Screen {

@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstgame.game.TankStars;
-import com.firstgame.game.savdeGame;
 import com.firstgame.game.tankSelect;
 
 public class setting implements Screen {
