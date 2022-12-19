@@ -8,11 +8,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.firstgame.game.TankStars;
 
-public class hud {
+public class topbar {
     public Stage stage;
     private Viewport viewport;
 
-    public hud(SpriteBatch batch){
+    public topbar(SpriteBatch batch){
         viewport = new FitViewport(TankStars.gameWidth,TankStars.gameHeight, new OrthographicCamera());
         stage = new Stage(viewport,batch);
 
