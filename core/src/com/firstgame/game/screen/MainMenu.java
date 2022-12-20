@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.firstgame.game.TankStars;
+//import com.firstgame.game.savedGame;
+
 import static com.badlogic.gdx.Gdx.graphics;
 
 public class MainMenu implements Screen {
@@ -83,7 +85,7 @@ public class MainMenu implements Screen {
         startNewGame.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                game.setScreen(new TankChoosing(game));
+                game.setScreen(new play1(game));
                 menuMusic.pause();
             }
         });
