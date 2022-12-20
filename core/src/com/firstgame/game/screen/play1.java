@@ -49,8 +49,8 @@ public class play1 implements Screen {
 //    Image healthP1;
 //    Image healthP2;
 //    Image vs;
-//    Image tank1;
-//    Image tank2;
+    Image tank1;
+    Image tank2;
     Music gameSound;
 
     public play1(final TankStars game) {
@@ -58,7 +58,7 @@ public class play1 implements Screen {
         gameStage = new Stage();
         load = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/theme/theme2.png")));
         load.setSize(graphics.getWidth(), graphics.getHeight());
-        terrain = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/terrain/STerrain.png")));
+        terrain = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/terrain/newTerrain.png")));
         terrain.setSize(graphics.getWidth(), graphics.getHeight()-360);
 //
 //        healthP1 = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/Components/health2.png")));
@@ -73,13 +73,14 @@ public class play1 implements Screen {
 //        vs.setSize(200,200);
 //        vs.setPosition(760,790);
 //
-//        tank1 = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png")));
-//        tank1.setSize(115,55);
-//        tank1.setPosition(1404,341);
+        tank1 = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png")));
+        tank1.setSize(115,55);
+        tank1.setPosition(350,290);
+
 //
-//        tank2 = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/Tank4.png")));
-//        tank2.setSize(115,75);
-//        tank2.setPosition(375,408);
+        tank2 = new Image(new Texture(Gdx.files.internal("Menu/Images/FspaceTanks/FTank4.png")));
+        tank2.setSize(115,75);
+        tank2.setPosition(1200,279);
 
         Gdx.input.setInputProcessor(gameStage);
         gameSound = Gdx.audio.newMusic(Gdx.files.internal("GamePlay/Music/gamePlay.mp3"));
@@ -121,8 +122,8 @@ public class play1 implements Screen {
 //        gameStage.addActor(healthP1);
 //        gameStage.addActor(healthP2);
 //        gameStage.addActor(vs);
-//        gameStage.addActor(tank1);
-//        gameStage.addActor(tank2);
+        gameStage.addActor(tank1);
+        gameStage.addActor(tank2);
 
 
     }
@@ -145,9 +146,32 @@ public class play1 implements Screen {
         }
 
     }
+    public void turn(Image tank1 ,Image tank2){
+
+    }
+    public void fuel(){
+
+    }
+
+    public void tankmove(){
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            tank1.setPosition((float) (tank1.getX()+1),tank1.getY());
+            }
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            tank1.setPosition((float) (tank1.getX()-1),tank1.getY());
+                }
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            tank2.setPosition((float) (tank2.getX()+1),tank2.getY());
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            tank2.setPosition((float) (tank2.getX()-1),tank2.getY());
+        }
+
+        }
 
     public void update(float delta){
-        handleInput(delta);
+        tankmove();
+//        handleInput(delta);
         world.step(1/60f,6,2);
         gamecam.position.x = tank.b2body.getPosition().x;
         gamecam.update();
