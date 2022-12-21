@@ -7,6 +7,16 @@ public class Player {
     private Tank tanks = new Tank();
     private boolean isWinner ;
 
+    private float angle;
+
+    public float getAngle(){
+        return angle;
+    }
+    public float setAngle(float angle){
+        this.angle =angle;
+        return angle;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -46,4 +56,5 @@ public class Player {
     public boolean isWinner() {
         return isWinner;
     }
+
 }

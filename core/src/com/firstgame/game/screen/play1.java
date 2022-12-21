@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.firstgame.game.TankStars;
+import com.firstgame.game.basicClasses.Player;
 import com.firstgame.game.scenes.topbar;
 import com.firstgame.game.sprites.Tank;
 
@@ -44,14 +45,19 @@ public class play1 implements Screen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
-    Image load;
-    Image terrain;
+    private Image load;
+    private Image terrain;
 //    Image healthP1;
 //    Image healthP2;
 //    Image vs;
-    Image tank1;
-    Image tank2;
-    Music gameSound;
+    private Image tank1;
+    private Image tank2;
+    private Music gameSound;
+
+    private float angle = 15;
+
+    Player P1 = new Player();
+
 
     public play1(final TankStars game) {
         this.game = game;
@@ -153,7 +159,7 @@ public class play1 implements Screen {
 
     }
 
-    public void tankmove(){
+    public void tankMove(){
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             tank1.setPosition((float) (tank1.getX()+1),tank1.getY());
             }
@@ -166,11 +172,27 @@ public class play1 implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             tank2.setPosition((float) (tank2.getX()-1),tank2.getY());
         }
-
         }
 
+    public void angleSet(){
+        if(Gdx.input.isKeyPressed(Input.Keys.W)){
+           angle++;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            angle--;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            angle++;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            angle--;
+        }
+        P1.setAngle(angle);
+    }
+
     public void update(float delta){
-        tankmove();
+        tankMove();
+        angleSet();
 //        handleInput(delta);
         world.step(1/60f,6,2);
         gamecam.position.x = tank.b2body.getPosition().x;
