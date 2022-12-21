@@ -1,21 +1,22 @@
 package com.firstgame.game.basicClasses;
+import com.badlogic.gdx.math.MathUtils;
+import java.lang.Math;
 
 public class Player {
     private int health = 100;
     private int position = 0;
-    private int fuel = 0;
+    private int fuel = 100;
     private Tank tanks = new Tank();
     private boolean isWinner ;
 
     private float angle;
 
+    private int power;
+
     public float getAngle(){
         return angle;
     }
-    public float setAngle(float angle){
-        this.angle =angle;
-        return angle;
-    }
+    public void setAngle(float angle){this.angle =angle;}
 
     public int getHealth() {
         return health;
@@ -57,4 +58,15 @@ public class Player {
         return isWinner;
     }
 
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public float getDottedLine(float x){
+        return (float)((Math.tan(Math.toDegrees(this.angle))*x) + 350);
+    }
 }
