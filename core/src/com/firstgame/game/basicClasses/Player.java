@@ -27,7 +27,15 @@ public class Player {
     }
 
     public int getFuel() {
+        if(fuel < 0)
+        {
+            return 0;
+        }
         return fuel;
+    }
+
+    public void refuel(){
+        fuel = 100;
     }
 
     public void setHealth(int health) {

@@ -56,6 +56,7 @@ public class play1 implements Screen {
 
     private float angle1 = 15;
     private float angle2 = 15;
+    public int fuel = 100;
 
 
     Player P1 = new Player();
@@ -163,6 +164,7 @@ public class play1 implements Screen {
 
     public void tankMove(){
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
+
             tank1.setPosition((float) (tank1.getX()+1),tank1.getY());
             }
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
