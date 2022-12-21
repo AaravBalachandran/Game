@@ -1,12 +1,14 @@
 package com.firstgame.game.basicClasses;
 import com.badlogic.gdx.math.MathUtils;
+import com.firstgame.game.sprites.Tank;
+
 import java.lang.Math;
 
 public class Player {
     private int health = 100;
     private int position = 0;
     private int fuel = 100;
-    private Tank tanks = new Tank();
+    private Tank tanks;
     private boolean isWinner ;
 
     private float angle;
@@ -27,10 +29,6 @@ public class Player {
     }
 
     public int getFuel() {
-        if(fuel < 0)
-        {
-            return 0;
-        }
         return fuel;
     }
 
@@ -66,9 +64,7 @@ public class Player {
         return isWinner;
     }
 
-    public int getPower() {
-        return power;
-    }
+    public int getPower() {return power;}
 
     public void setPower(int power) {
         this.power = power;

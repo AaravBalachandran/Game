@@ -47,19 +47,12 @@ public class play1 implements Screen {
 
     private Image load;
     private Image terrain;
-//    Image healthP1;
-//    Image healthP2;
-//    Image vs;
+    Image vs;
     private Image tank1;
     private Image tank2;
     private Music gameSound;
-
-    private float angle1 = 15;
-    private float angle2 = 15;
-    public int fuel = 100;
-
-
     Player P1 = new Player();
+    Player P2 = new Player();
 
 
     public play1(final TankStars game) {
@@ -69,18 +62,10 @@ public class play1 implements Screen {
         load.setSize(graphics.getWidth(), graphics.getHeight());
         terrain = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/terrain/newTerrain.png")));
         terrain.setSize(graphics.getWidth(), graphics.getHeight()-360);
-//
-//        healthP1 = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/Components/health2.png")));
-//        healthP1.setSize(402,90);
-//        healthP1.setPosition(414,850);
-//
-//        healthP2 = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/Components/health1.png")));
-//        healthP2.setSize(402,90);
-//        healthP2.setPosition(900,850);
-//
-//        vs = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/Components/vs2.png")));
-//        vs.setSize(200,200);
-//        vs.setPosition(760,790);
+
+        vs = new Image(new Texture(Gdx.files.internal("GamePlay/Images/background/Components/vs2.png")));
+        vs.setSize(200,200);
+        vs.setPosition(760,790);
 //
         tank1 = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceTanks/blueTank.png")));
         tank1.setSize(115,55);
@@ -100,9 +85,6 @@ public class play1 implements Screen {
         gameport = new FitViewport(TankStars.gameWidth/TankStars.PPM, TankStars.gameHeight/TankStars.PPM,gamecam);
         topbar = new topbar(game.batch);
 
-//        maploader = new TmxMapLoader();
-//        map = maploader.load("stage_1.tmx");
-//        renderer = new OrthogonalTiledMapRenderer(map, 1/TankStars.PPM);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
         world = new World(new Vector2(0,-10),true);
@@ -113,27 +95,11 @@ public class play1 implements Screen {
         Body body;
         tank = new Tank(world);
 
-        // ground
-//        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
-//            Rectangle rect = ((RectangleMapObject) object ).getRectangle();
-//            bodydef.type = BodyDef.BodyType.StaticBody;
-//            bodydef.position.set((rect.getX() + rect.getWidth() / 2) / TankStars.PPM, (rect.getY() + rect.getHeight() / 2) / TankStars.PPM);
-//
-//            body = world.createBody(bodydef);
-//
-//            shape.setAsBox(rect.getWidth()/2/TankStars.PPM, rect.getHeight()/2/TankStars.PPM);
-//            fixtureDef.shape = shape;
-//            body.createFixture(fixtureDef);
-//        }
-
         gameStage.addActor(load);
         gameStage.addActor(terrain);
-//        gameStage.addActor(healthP1);
-//        gameStage.addActor(healthP2);
-//        gameStage.addActor(vs);
+        gameStage.addActor(vs);
         gameStage.addActor(tank1);
         gameStage.addActor(tank2);
-
 
     }
 
@@ -155,18 +121,14 @@ public class play1 implements Screen {
         }
 
     }
-    public void turn(Image tank1 ,Image tank2){
-
-    }
     public void fuel(){
 
     }
 
     public void tankMove(){
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
-
             tank1.setPosition((float) (tank1.getX()+1),tank1.getY());
-            }
+        }
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
             tank1.setPosition((float) (tank1.getX()-1),tank1.getY());
                 }
@@ -180,31 +142,51 @@ public class play1 implements Screen {
 
     public void angleSet(){
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
-           angle1++;
+           P1.setAngle(P1.getAngle() + 10);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            angle1--;
+            P1.setAngle(P1.getAngle() - 10);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            angle2++;
+            P2.setAngle(P2.getAngle() + 10);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            angle2--;
+            P2.setAngle(P2.getAngle() - 10);
         }
-        P1.setAngle(angle1);
-        P1.setAngle(angle2);
-//        System.out.println(angle);
+    }
+
+    private void powerset() {
+        if(Gdx.input.isKeyPressed(Input.Keys.Q)){
+            P1.setPower(P1.getPower() + 10);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.E)){
+            if(P1.getPower() >0){
+                P1.setAngle(P1.getPower() - 10);
+            }
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.U)){
+            if(P2.getPower() >0){
+                P2.setAngle(P1.getPower() + 10);
+            }
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.P)){
+            if(P2.getPower() >0){
+                P2.setAngle(P2.getPower() - 10);
+            }
+        }
     }
 
     public void update(float delta){
         tankMove();
         angleSet();
+        powerset();
 //        handleInput(delta);
         world.step(1/60f,6,2);
         gamecam.position.x = tank.b2body.getPosition().x;
         gamecam.update();
 //        renderer.setView(gamecam);
     }
+
 
     public void handleInput(float delta){
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && (tank.b2body.getLinearVelocity().x <= 2)){
