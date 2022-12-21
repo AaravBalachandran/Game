@@ -54,7 +54,9 @@ public class play1 implements Screen {
     private Image tank2;
     private Music gameSound;
 
-    private float angle = 15;
+    private float angle1 = 15;
+    private float angle2 = 15;
+
 
     Player P1 = new Player();
 
@@ -176,18 +178,20 @@ public class play1 implements Screen {
 
     public void angleSet(){
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
-           angle++;
+           angle1++;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            angle--;
+            angle1--;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            angle++;
+            angle2++;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            angle--;
+            angle2--;
         }
-        P1.setAngle(angle);
+        P1.setAngle(angle1);
+        P1.setAngle(angle2);
+//        System.out.println(angle);
     }
 
     public void update(float delta){

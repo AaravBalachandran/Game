@@ -33,7 +33,7 @@ public class setting implements Screen {
     public setting(final TankStars game) {
         this.game = game;
         menuStage = new Stage();
-        setting = new Image(new Texture(Gdx.files.internal("Menu/Images/normalSettingsMenu.png")));
+        setting = new Image(new Texture(Gdx.files.internal("Menu/Images/spaceSettingsMenu.png")));
         Gdx.input.setInputProcessor(menuStage);
         menuMusic = Gdx.audio.newMusic(Gdx.files.internal("Menu/Music/mainMenu.mp3"));
         menuMusic.setLooping(true);
